@@ -3,6 +3,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:login/View/Home/HomePage.dart';
 
 import '../../Constant/Constant.dart';
+import '../Screen/Booking.dart';
 import '../Screen/Profile.dart';
 import '../Screen/Setting.dart';
 
@@ -21,9 +22,9 @@ class BottomNav extends StatelessWidget {
             body: TabBarView(
               children: [
                 HomePage(),
-                Setting(),
-                Setting(),
+                BookingPage(),
                 Profile(),
+                SettingPage(),
               ],
             ),
             bottomNavigationBar: Container(
