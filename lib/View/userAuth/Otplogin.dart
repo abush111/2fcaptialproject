@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:login/Bloc/bloc/otp/otp_bloc.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import '../../Bloc/bloc/email_password/auth_bloc.dart';
-import '../../Theme/Theme.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:login/View/Bottom/Bottomnav.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:ionicons/ionicons.dart';
+
+import '../../Theme/Theme.dart';
 
 class OtpScreen extends StatefulWidget {
   String? City;
@@ -71,6 +71,12 @@ class _OtpScreenState extends State<OtpScreen> {
     )
         .whenComplete(() async {
       var firebaseUser = await FirebaseAuth.instance.currentUser;
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => BottomNav(),
+        ),
+      );
     });
   }
 
@@ -79,7 +85,6 @@ class _OtpScreenState extends State<OtpScreen> {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     bottom = MediaQuery.of(context).viewInsets.bottom;
-    final loginBloc = BlocProvider.of<OTPAuthBloc>(context);
     print('yes');
     print('${widget.City}');
 
@@ -104,7 +109,9 @@ class _OtpScreenState extends State<OtpScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (screenState == 0) {
-                        if (phoneController.text.isEmpty) {
+                        if (usernameController.text.isEmpty) {
+                          showSnackBarText("Username is still empty!");
+                        } else if (phoneController.text.isEmpty) {
                           showSnackBarText("Phone number is still empty!");
                         } else {
                           verifyPhone(countryDial + phoneController.text);
@@ -245,7 +252,14 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 4,
+            ),
+            TextFormField(
+              controller: usernameController,
+              decoration: InputDecoration(hintText: 'Enter your name'),
+            ),
+            const SizedBox(
+              height: 8,
             ),
             IntlPhoneField(
               controller: phoneController,
@@ -276,10 +290,10 @@ class _OtpScreenState extends State<OtpScreen> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: " Insert the OTP sent to your number!\n",
+                  text: "We just sent a code to ",
                   style: GoogleFonts.montserrat(
                     color: Colors.black87,
-                    fontSize: 12,
+                    fontSize: 18,
                   ),
                 ),
                 TextSpan(
@@ -290,6 +304,13 @@ class _OtpScreenState extends State<OtpScreen> {
                     fontSize: 18,
                   ),
                 ),
+                TextSpan(
+                  text: "\nEnter the code here and we can continue!",
+                  style: GoogleFonts.montserrat(
+                    color: Colors.black87,
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
           ),
@@ -297,7 +318,7 @@ class _OtpScreenState extends State<OtpScreen> {
             height: 20,
           ),
           Padding(
-            padding: EdgeInsets.all(14.0),
+            padding: const EdgeInsets.all(14.0),
             child: PinCodeTextField(
               appContext: context,
               length: 6,
