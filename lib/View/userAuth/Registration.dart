@@ -4,7 +4,8 @@ import 'package:horizontal_text_line/horizontal_text_line.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:login/View/Home/HomePage.dart';
-import '../../Bloc/bloc/auth_bloc.dart';
+
+import '../../Bloc/bloc/email_password/auth_bloc.dart';
 import '../../Route/Routes.dart';
 import '../../Theme/Theme.dart';
 
@@ -24,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    final loginBloc = BlocProvider.of<AppBloc>(context);
 
     return Scaffold(
         body: SafeArea(
@@ -75,41 +77,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: screenHeight * 0.02),
+                        margin: EdgeInsets.only(top: screenHeight * 0.1),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 6.0, bottom: 12, right: 7, left: 4.5),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "2F",
-                                style: GoogleFonts.montserrat(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                " CAPTIAL",
-                                style: GoogleFonts.montserrat(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // margin: EdgeInsets.only(top: screenHeight * 0.2),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                " SIGN IN",
+                                " Register",
                                 style: GoogleFonts.montserrat(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -123,11 +99,20 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text("Name")],
+                          children: [
+                            Text(
+                              "Full name",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Row(
                         children: [
@@ -137,7 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               width: screenWidth - 16,
                               height: screenHeight * 0.1,
                               child: TextFormField(
-                                controller: _emailController,
+                                controller: _nameController,
                                 decoration: ThemeHelper().textInputDecoration(
                                   '',
                                   ' ',
@@ -156,11 +141,20 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text(" Email")],
+                          children: [
+                            Text(
+                              " Email",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Row(
                         children: [
@@ -189,7 +183,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text(" Password")],
+                          children: [
+                            Text(
+                              " Password",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       Row(
@@ -218,14 +221,20 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text(" Forget password ?")],
+                          children: [
+                            Text(
+                              " Forget password ?",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Column(children: [
                         Row(
@@ -237,11 +246,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    context.read<AppBloc>().add(
-                                        AppEventRegister(
-                                            email: _emailController.text,
-                                            password:
-                                                _passwordController.text));
+                                    loginBloc.add(AppEventRegister(
+                                        email: _emailController.text,
+                                        password: _passwordController.text));
                                   }
                                 },
                                 child: const Text(
@@ -257,17 +264,21 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                       ]),
-                      SizedBox(
-                        height: 10,
-                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(" Already Have An Account ? "),
+                            Text(
+                              " Already Have An Account ? ",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                              ),
+                            ),
                             InkWell(
                                 onTap: () {
                                   Navigator.of(context).pushNamed(
@@ -276,7 +287,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 },
                                 child: Text(
                                   "SIGN",
-                                  style: TextStyle(color: Colors.blue),
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
                                 ))
                           ],
                         ),

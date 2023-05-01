@@ -6,7 +6,7 @@ class ThemeHelper {
       [String lableText = "", String hintText = "", Widget? prefixIcon]) {
     return InputDecoration(
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 1, color: Colors.black),
+        borderSide: BorderSide(width: 1, color: Colors.grey),
         borderRadius: BorderRadius.circular(6.0),
       ),
       border: OutlineInputBorder(
@@ -44,7 +44,6 @@ class ThemeHelper {
       boxShadow: [
         BoxShadow(color: Colors.black26, offset: Offset(0, 4), blurRadius: 5.0)
       ],
-      
       color: Colors.deepPurple.shade300,
       borderRadius: BorderRadius.circular(30),
     );

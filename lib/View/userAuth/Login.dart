@@ -4,7 +4,7 @@ import 'package:horizontal_text_line/horizontal_text_line.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/View/Bottom/Bottomnav.dart';
 import 'package:login/View/Home/HomePage.dart';
-import '../../Bloc/bloc/auth_bloc.dart';
+import '../../Bloc/bloc/email_password/auth_bloc.dart';
 import '../../Route/Routes.dart';
 import '../../Theme/Theme.dart';
 
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
+    final loginBloc = BlocProvider.of<AppBloc>(context);
     return Scaffold(
         body: SafeArea(
             child: BlocListener<AppBloc, AppState>(
@@ -49,45 +49,19 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: screenHeight * 0.15),
+                        margin: EdgeInsets.only(top: screenHeight * 0.2),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              left: 6.0, right: 6, top: 6, bottom: 12),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "2F",
-                                style: GoogleFonts.montserrat(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                " CAPTIAL",
-                                style: GoogleFonts.montserrat(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // margin: EdgeInsets.only(top: screenHeight * 0.2),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 " SIGN IN",
                                 style: GoogleFonts.montserrat(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 13,
+                                  fontSize: 14,
                                 ),
                               )
                             ],
@@ -95,16 +69,25 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text(" Email")],
+                          children: [
+                            Text(
+                              " Email",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Row(
                         children: [
@@ -133,7 +116,16 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text(" Password")],
+                          children: [
+                            Text(
+                              " Password",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       Row(
@@ -162,14 +154,20 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [Text(" Forget password ?")],
+                          children: [
+                            Text(
+                              " Forget password ?",
+                              style: GoogleFonts.montserrat(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Column(children: [
                         Row(
@@ -181,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    context.read<AppBloc>().add(AppEventLogIn(
+                                    loginBloc.add(AppEventLogIn(
                                         email: _emailController.text,
                                         password: _passwordController.text));
                                   }
@@ -199,14 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 10,
-                        ),
-                        HorizontalTextLine(
-                            text: "Continue With",
-                            color: Colors.brown,
-                            height: 1.5),
-                        SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -256,7 +247,14 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(" Don't Have An Account ? "),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(left: screenHeight * 0.04),
+                              child: Text(
+                                " Don't Have An Account ? ",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
                             InkWell(
                                 onTap: () {
                                   Navigator.of(context).pushNamed(
@@ -265,7 +263,11 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 child: Text(
                                   "Register",
-                                  style: TextStyle(color: Colors.blue),
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
                                 ))
                           ],
                         ),

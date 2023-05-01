@@ -3,9 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../Repository/auth.dart';
-import '../../Repository/auth_error.dart';
-
+import '../../../Repository/auth.dart';
+import '../../../Repository/auth_error.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
