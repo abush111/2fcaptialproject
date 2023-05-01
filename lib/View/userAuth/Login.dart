@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:horizontal_text_line/horizontal_text_line.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/View/Bottom/Bottomnav.dart';
@@ -16,6 +17,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final locator = GetIt.instance;
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -24,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     final loginBloc = BlocProvider.of<AppBloc>(context);
+    final AppBloc authBloc = locator<AppBloc>();
     return Scaffold(
         body: SafeArea(
             child: BlocListener<AppBloc, AppState>(
