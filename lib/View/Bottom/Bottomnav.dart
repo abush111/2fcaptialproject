@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:login/View/Home/HomePage.dart';
 
 import '../../Constant/Constant.dart';
@@ -41,7 +42,7 @@ class BottomNav extends StatelessWidget {
                     tabs: [
                       Tab(
                         icon: Icon(
-                          Icons.home,
+                          Icons.search,
                           color: Colors.black,
                         ),
                         child: Text(
@@ -67,7 +68,7 @@ class BottomNav extends StatelessWidget {
                       ),
                       Tab(
                         icon: Icon(
-                          Icons.book_online,
+                          Icons.book,
                           color: Colors.black,
                         ),
                         child: Text(

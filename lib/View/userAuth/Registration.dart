@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:horizontal_text_line/horizontal_text_line.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:login/View/Bottom/Bottomnav.dart';
 import 'package:login/View/Home/HomePage.dart';
 
 import '../../Bloc/bloc/email_password/auth_bloc.dart';
@@ -34,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
         if (state is AppStateLoggedIn) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => BottomNav()),
           );
         }
       },

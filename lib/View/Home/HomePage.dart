@@ -69,46 +69,79 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(top: screenHeight * 0.13),
-                        height: screenHeight * 0.08,
+                        height: screenHeight * 0.07,
                         width: screenWidth - 30,
                         decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(6.0),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
                         ),
-                        child: Card(
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SizedBox(
-                                      width: screenWidth * 0.3,
-                                      height: screenHeight * 0.045,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: Text("Return"),
-                                        style: ThemeHelper().buttonStyle(),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width: screenWidth * 0.3,
+                                    height: screenHeight * 0.045,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text("Return"),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                        ),
+                                        minimumSize: MaterialStateProperty.all(
+                                            Size(50, 50)),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Color.fromRGBO(2, 22, 56, 1)),
+                                        shadowColor: MaterialStateProperty.all(
+                                            Color.fromRGBO(2, 22, 56, 1)),
                                       ),
                                     ),
                                   ),
-                                  Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SizedBox(
-                                      width: screenWidth * 0.3,
-                                      height: screenHeight * 0.045,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: Text("One-way"),
-                                        style: ThemeHelper().buttonStyle(),
+                                ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width: screenWidth * 0.3,
+                                    height: screenHeight * 0.045,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text("One-way"),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                        ),
+                                        minimumSize: MaterialStateProperty.all(
+                                            Size(50, 50)),
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Color.fromRGBO(2, 22, 56, 1)),
+                                        shadowColor: MaterialStateProperty.all(
+                                            Color.fromRGBO(2, 22, 56, 1)),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       )
                     ],
@@ -148,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                                       fontSize: 12,
                                     ),
                                   ),
-                                  Text("   Bole international airport")
+                                  Text("   Bole international ")
                                 ],
                               ),
                             )),
@@ -220,7 +253,15 @@ class _HomePageState extends State<HomePage> {
                               width: screenWidth * 0.4,
                               child: Column(
                                 children: [
-                                  Container(child: Text("Departue Date")),
+                                  Container(
+                                      child: Text(
+                                    "Departue Date",
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                    ),
+                                  )),
                                   Container(
                                     margin: EdgeInsets.only(
                                         bottom: 0, left: screenHeight * 0.04),
@@ -255,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                                   Text("Return Date"),
                                   Container(
                                     margin: EdgeInsets.only(
-                                        left: screenHeight * 0.04),
+                                        left: screenHeight * 0.02),
                                     child: Row(
                                       children: [
                                         Text(
@@ -292,14 +333,28 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Container(
                                       margin: EdgeInsets.only(
-                                          right: screenHeight * 0.03),
-                                      child: Text("Cabin Class")),
+                                          right: screenHeight * 0.04),
+                                      child: Text(
+                                        "Cabin Class",
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 12,
+                                        ),
+                                      )),
                                   Container(
                                     margin: EdgeInsets.only(
                                         left: screenHeight * 0.04),
                                     child: Row(
                                       children: [
-                                        Text("Economy"),
+                                        Text(
+                                          "Economy",
+                                          style: GoogleFonts.montserrat(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -315,7 +370,14 @@ class _HomePageState extends State<HomePage> {
                               width: screenWidth * 0.4,
                               child: Column(
                                 children: [
-                                  Text("Passengers"),
+                                  Text(
+                                    "Passengers",
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                    ),
+                                  ),
                                   Container(
                                     margin: EdgeInsets.only(
                                         left: screenHeight * 0.04),

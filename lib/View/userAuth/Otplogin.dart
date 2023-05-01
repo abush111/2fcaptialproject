@@ -276,10 +276,10 @@ class _OtpScreenState extends State<OtpScreen> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "We just sent a code to ",
+                  text: " Insert the OTP sent to your number!\n",
                   style: GoogleFonts.montserrat(
                     color: Colors.black87,
-                    fontSize: 18,
+                    fontSize: 12,
                   ),
                 ),
                 TextSpan(
@@ -290,13 +290,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     fontSize: 18,
                   ),
                 ),
-                TextSpan(
-                  text: "\nEnter the code here and we can continue!",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.black87,
-                    fontSize: 12,
-                  ),
-                ),
               ],
             ),
           ),
@@ -304,7 +297,7 @@ class _OtpScreenState extends State<OtpScreen> {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.all(14.0),
+            padding: EdgeInsets.all(14.0),
             child: PinCodeTextField(
               appContext: context,
               length: 6,
